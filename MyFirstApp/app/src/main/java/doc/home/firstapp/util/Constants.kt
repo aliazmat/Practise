@@ -3,6 +3,8 @@ package doc.home.firstapp.util
 class Constants {
 
     companion object{
-         const val ENDPOINT = ""
+        const val FNAME = "FANME"
+        const val AGE = "AGE"
+        const val ENDPOINT = ""
     }
 }

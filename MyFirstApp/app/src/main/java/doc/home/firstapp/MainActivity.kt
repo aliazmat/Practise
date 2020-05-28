@@ -6,6 +6,7 @@ import android.os.Bundle
 import android.provider.CalendarContract
 import android.util.Log
 import android.widget.Toast
+import doc.home.firstapp.util.Constants
 import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : AppCompatActivity() {
@@ -13,7 +14,10 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-
+        val name = intent.getStringExtra(Constants.FNAME)
+        Log.e("TAG","First Name is "+intent.getStringExtra(Constants.FNAME))
+        Log.e("TAG", "The AGE is "+intent.getIntExtra(Constants.AGE,10))
+        text2.text= name
         text2.setOnClickListener{
             Toast.makeText(this, "OnClick", Toast.LENGTH_SHORT).show()
             val bundle = Bundle().apply {
@@ -22,7 +26,8 @@ class MainActivity : AppCompatActivity() {
             Intent().apply {
 
             }
-            startActivity(Intent(this,MainActivity::class.java).addFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP))
+            val myIntent = Intent(this,MainActivity::class.java)
+            startActivity(Intent(this,MainActivity::class.java))
         }
 
         buttonone.setOnClickListener{
