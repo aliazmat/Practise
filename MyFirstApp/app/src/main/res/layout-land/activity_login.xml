@@ -29,7 +29,6 @@
     android:layout_height="wrap_content"
     android:background="@android:color/holo_green_light"
     >
-    <include layout="@layout/activity_cart"/>
     <!--
     <Button
         android:layout_weight="1"

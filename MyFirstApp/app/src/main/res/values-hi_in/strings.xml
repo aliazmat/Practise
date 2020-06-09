@@ -1,0 +1,4 @@
+<resources>
+    <string name="app_name">MyFirstAp</string>
+    <string name="my_label">My Label</string>
+</resources>

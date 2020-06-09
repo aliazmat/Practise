@@ -1,11 +1,16 @@
 package doc.home.firstapp
 
+import android.Manifest
 import android.content.Intent
+import android.content.pm.PackageManager
+import android.net.Uri
+import android.os.Build
 import android.os.Bundle
-import android.os.Handler
 import android.util.Log
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.content.ContextCompat
+import doc.home.firstapp.model.UserModel
 import doc.home.firstapp.util.Constants
 import kotlinx.android.synthetic.main.activity_login.*
 
@@ -14,41 +19,83 @@ class LoginActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_login)
-        progressBar.setOnClickListener {
-            Toast.makeText(this, "OnClick ProgressBar",Toast.LENGTH_SHORT).show()
-        }
-
-        progressBar.apply {
-
-        }
+//        progressBar.setOnClickListener {
+//            Toast.makeText(this, "OnClick ProgressBar",Toast.LENGTH_SHORT).show()
+//        }
+//
+//        progressBar.apply {
+//
+//        }
 //        text.apply {
 //            text = "Today Demo"
 //            //background =
 //
 //        }
+
         text.setOnClickListener{
            Toast.makeText(this, "OnClick",Toast.LENGTH_SHORT).show()
 
             val openIntent = Intent(this, MainActivity::class.java)
-            openIntent.putExtra(Constants.FNAME,input1.text.toString())
+            val userModel = UserModel("Azmat","Ali",32)
+           // openIntent.putExtra(Constants.FNAME,input1.text.toString())
             openIntent.putExtra(Constants.AGE,20)
 
             startActivity(openIntent)
-          // testImplictIntent()
+           finish()
+        //  testImplictIntent()
         }
+
+
 
         button.setOnClickListener{
-            Thread(Runnable{
+//            val sceneViewerIntent = Intent(Intent.ACTION_VIEW)
+//            sceneViewerIntent.data =
+//                Uri.parse("https://arvr.google.com/scene-viewer/1.0?file=https://raw.githubusercontent.com/KhronosGroup/glTF-Sample-Models/master/2.0/Avocado/glTF/Avocado.gltf")
+////            sceneViewerIntent.data =
+////                Uri.parse("https://arvr.google.com/scene-viewer/1.0?file=https://raw.githubusercontent.com/KhronosGroup/glTF-Sample-Models/blob/master/2.0/Sponza/glTF/Sponza.gltf")
+//            sceneViewerIntent.setPackage("com.google.android.googlequicksearchbox")
+//            startActivity(sceneViewerIntent)
 
-            }).start()
+            getRunTimePermission()
         }
+
+
+
+
 
         Log.e("TAG","OnCreate Activity One")
     }
 
+    fun getRunTimePermission(){
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+            if(checkSelfPermission(Manifest.permission.CAMERA) == PackageManager.PERMISSION_GRANTED){
+                //Perform desired operation.
+            }else{
+             requestPermissions(arrayOf(Manifest.permission.CAMERA),100)
+            }
+
+        }else{
+            //Perform desired operation.
+        }
+    }
+
+    override fun onRequestPermissionsResult(
+        requestCode: Int,
+        permissions: Array<out String>,
+        grantResults: IntArray
+    ) {
+        if(requestCode == 100){
+            if(grantResults[0] == PackageManager.PERMISSION_GRANTED){
+                //
+            }
+        }
+
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults)
+    }
+
     fun testImplictIntent(){
         val sendIntent = Intent().apply {
-            action = "ABC"
+            action = "SUMIT_ACTION"
             putExtra(Intent.EXTRA_TEXT, "Hi text")
             type = "text/plain"
         }

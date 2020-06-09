@@ -36,6 +36,12 @@ class MainActivity : AppCompatActivity() {
         Log.e("TAG","OnCreate Activity Two")
     }
 
+    override fun onBackPressed() {
+       // super.onBackPressed()
+
+        Log.e("TAG","On Back Pressed")
+    }
+
     fun addEvent(title: String, location: String, begin: Long, end: Long) {
         val intent = Intent(Intent.ACTION_INSERT).apply {
             data = CalendarContract.Events.CONTENT_URI

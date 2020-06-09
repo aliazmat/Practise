@@ -2,6 +2,8 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="doc.home.firstapp">
 
+    <uses-permission android:name="android.permission.CAMERA"/>
+    <uses-permission android:name="android.permission.INTERNET"/>
     <application
         android:name=".MyApplication"
         android:allowBackup="true"
@@ -10,7 +12,13 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
+
         <activity android:name=".cart.CartActivity">
+            <intent-filter>
+                <action android:name="SUMIT_ACTION"/>
+                <category android:name="android.intent.category.DEFAULT"/>
+                <data android:mimeType="text/plain"/>
+            </intent-filter>
         </activity>
         <activity android:name=".LoginActivity" >
             <intent-filter>
@@ -19,10 +27,15 @@
             </intent-filter>
         </activity>
         <activity android:name=".JavaActivity">
-
+            <intent-filter>
+                <action android:name="SUMIT_ACTION"/>
+                <category android:name="android.intent.category.DEFAULT"/>
+                <data android:mimeType="text/plain"/>
+            </intent-filter>
         </activity>
         <activity android:name=".MainActivity"
             />
+        <activity android:name=".SecondJuneActivity"/>
 
     </application>
 
